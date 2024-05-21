@@ -1,6 +1,10 @@
 package brian.model;
 
-public class HocPhan {
+import java.io.Serializable;
+
+public class HocPhan implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private String maHP;
 	private MonHoc maMH;
 	private Lop maLop;

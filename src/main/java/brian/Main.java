@@ -2,6 +2,8 @@ package brian;
 
 import java.text.SimpleDateFormat;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import brian.dao.DAOFactory;
 import brian.dao.DKHPDAO;
 import brian.dao.GiaoVienDAO;
@@ -16,8 +18,6 @@ import brian.dao.SinhVienDAO;
 import brian.dao.TaiKhoanDAO;
 
 
-
-
 public class Main {
 	public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	public static DAOFactory mssqlDaoFactory = DAOFactory.getDaoFactory(DAOFactory.MSSQL);
@@ -29,10 +29,14 @@ public class Main {
 	public static MonHocDAO monHocDAO = mssqlDaoFactory.getMonHocDAO();
 	public static HocKiDAO hocKiDAO = mssqlDaoFactory.getHocKiDAO();
 	public static HocPhanDAO hocPhanDAO = mssqlDaoFactory.getHocPhanDAO();
-	public static DKHPDAO dkhpdao = mssqlDaoFactory.getDKHPDAO();
+	public static DKHPDAO dkhpDAO = mssqlDaoFactory.getDKHPDAO();
 	public static MoDKHPDAO moDKHPDAO = mssqlDaoFactory.getMoDKHPDAO();
 	public static HKHienTaiDAO hkHienTaiDAO= mssqlDaoFactory.geHKHienTaiDAO();
 	
 	
+
+	public static void main(String[] args) {
+	    
+	}
 	
 }

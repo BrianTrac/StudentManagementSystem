@@ -1,6 +1,10 @@
 package brian.model;
 
-public class Lop {
+import java.io.Serializable;
+
+public class Lop implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private String maLop;
 	private String tenLop;
 	private int soSV;

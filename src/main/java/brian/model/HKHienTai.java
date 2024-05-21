@@ -1,6 +1,10 @@
 package brian.model;
 
-public class HKHienTai {
+import java.io.Serializable;
+
+public class HKHienTai implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private String maHKHT;
 	private HocKi maHK;
 	

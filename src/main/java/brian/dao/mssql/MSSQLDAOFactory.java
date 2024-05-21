@@ -18,21 +18,37 @@ import brian.dao.SinhVienDAO;
 import brian.dao.TaiKhoanDAO;
 
 public class MSSQLDAOFactory extends DAOFactory{
+	private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=DB_StudentManagementSystem_22120120;user=sa;password=password;encrypt=true;trustServerCertificate=true";
 	
-	private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=DB_StudentManagementSystem_22120120";
-	private static final String  USERNAME = "";
-	private static final String PASSWORD = "";
+	static {
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 	
 	public static Connection createConnection() {
 		Connection connection = null;
 		try {
-			connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			connection = DriverManager.getConnection(URL);
 		} catch (SQLException e) {
 			System.out.println("Connection failed. Error: " + e.getMessage());
 		}
 		
 		return connection;
 	}
+	
+	// Add a method to close the connection
+    public static void closeConnection(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.out.println("Error closing connection. Error: " + e.getMessage());
+            }
+        }
+    }
 	
 	@Override
 	public DKHPDAO getDKHPDAO() {

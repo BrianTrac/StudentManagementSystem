@@ -1,0 +1,22 @@
+
+.crud-buttons {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically (row-by-row) */
+    align-items: flex-end;  /* Align items to the right edge of the container */
+}
+
+.crud-buttons button {
+    background-color: #007bff; /* Vibrant blue background */
+    color: white;               /* White text for contrast */
+    border: none;             /* Remove default border */
+    padding: 10px 15px;      /* Add some padding */
+    margin: 5px;              /* Add spacing between buttons */
+    border-radius: 5px;       /* Round the corners slightly */
+    cursor: pointer;          /* Indicate that it's clickable */
+    font-weight: bold;        /* Make the text bolder */
+    transition: background-color 0.3s ease; /* Smooth transition effect on hover */
+}
+
+.crud-buttons button:hover {
+    background-color: #0056b3; /* Slightly darker blue on hover */
+}

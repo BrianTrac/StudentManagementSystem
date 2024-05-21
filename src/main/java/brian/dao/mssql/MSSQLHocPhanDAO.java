@@ -239,22 +239,19 @@ public class MSSQLHocPhanDAO implements HocPhanDAO{
 	public Object[][] getObjectMatrix() {
 		// TODO Auto-generated method stub
 		List<HocPhan> hocPhanList = getAllHocPhan();
-		Object[][] data = new Object[hocPhanList.size()][12];
+		Object[][] data = new Object[hocPhanList.size()][10];
 		
 		for (int i = 0; i < data.length; i++) {
 			data[i][0] = hocPhanList.get(i).getMaHP();
-			data[i][1] = String.valueOf(hocPhanList.get(i).getSiSo());
-			data[i][2] = String.valueOf(hocPhanList.get(i).getDaDK());
-			data[i][3] = hocPhanList.get(i).getKhoa();
-			data[i][4] = hocPhanList.get(i).getThu();
-			data[i][5] = hocPhanList.get(i).getKhungGio();
-			data[i][6] = hocPhanList.get(i).getPhong();
-			data[i][7] = hocPhanList.get(i).getDiaDiem();
-			data[i][8] = hocPhanList.get(i).getMaGV().getMaGV();
-			data[i][9] = hocPhanList.get(i).getMaMH().getMaMH();
-			data[i][10] = hocPhanList.get(i).getMaLop().getMaLop();
-			data[i][11] = hocPhanList.get(i).getMaHK().getMaHK();
-
+			data[i][1] = hocPhanList.get(i).getMaMH().getTenMH();
+			data[i][2] = hocPhanList.get(i).getMaLop().getTenLop();
+			data[i][3] = hocPhanList.get(i).getMaMH().getSoTC();
+			data[i][4] = String.valueOf(hocPhanList.get(i).getSiSo());
+			data[i][5] = String.valueOf(hocPhanList.get(i).getDaDK());
+			data[i][6] = hocPhanList.get(i).getKhoa();
+			data[i][7] = hocPhanList.get(i).getThu() + " " + hocPhanList.get(i).getKhungGio();
+			data[i][8] = hocPhanList.get(i).getPhong() + " " + hocPhanList.get(i).getDiaDiem();
+			data[i][9] = hocPhanList.get(i).getMaGV().getTenGV();
 		}
 		
 		return data;

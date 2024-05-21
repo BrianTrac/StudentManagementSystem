@@ -1,0 +1,41 @@
+.table-container {
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto; /* Allows columns to adjust based on content */
+}
+
+th, td {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+th {
+    cursor: pointer;
+    background-color: #f2f2f2;
+}
+
+th.sortable:after {
+    content: "\f0dc"; /* FontAwesome icon for sorting */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    padding-left: 10px;
+}
+
+th.sortable.asc:after {
+    content: "\f0de"; /* FontAwesome icon for ascending */
+}
+
+th.sortable.desc:after {
+    content: "\f0dd"; /* FontAwesome icon for descending */
+}
+
+.highlighted-row {
+    background-color: #888888; /* Light blue background */
+}

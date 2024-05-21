@@ -1,8 +1,11 @@
 package brian.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class GiaoVu {
+public class GiaoVu implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private TaiKhoan maGVu;
 	private String tenGVu;
 	private String gioiTinh;

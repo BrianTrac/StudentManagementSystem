@@ -1,0 +1,134 @@
+body {
+    background-image: linear-gradient(
+        0deg,
+        #D4D3D3 75%,
+        #1A1A1A 25%
+    );
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container {
+    min-width: 1370px;
+    justify-content: space-between;
+    height: 90%;
+    width: 95%; 
+    background-color: #5B9DCC;
+    display: flex;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    overflow: auto;
+}
+
+.navigation ul {
+    height: 100%;
+    min-width: 170px;
+    flex-grow: 1;
+    background-color: #DEDEDE;
+    border-radius: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation a {    
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding: 20px 20px; 
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.navigation a:hover {
+    background-color: #888888;
+}
+
+.table-container {
+    background-color: #FFFFFF;
+    min-width: 900px;
+    flex-grow: 2;
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto; /* Add scrollbars when content overflows */
+}
+
+.content h2 {
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    display: flex; /* Allow search input and button to sit side-by-side */
+    align-items: center; /* Vertically align the items */
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 20px;
+    width: 60%; /* Make the search input fill available space */
+}
+
+.search-bar input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+}
+
+.search-bar button {
+    margin-left: 10px;
+    padding: 10px 15px;
+    background-color: #598dc5; /* Blue background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #1c6fc7;
+}
+
+.info-container {
+    border-radius: 8px;
+    min-width: 300px;
+    flex-grow: 1;
+    background-color: #DEDEDE;   
+}
+
+.crud-buttons { 
+	position: absolute;
+    bottom: 50px;     
+    right: 40px;       
+    display: flex;     
+    flex-direction: column;
+}
+
+.crud-buttons button {
+	width: 290px;
+    background-color: #007bff; /* Vibrant blue background */
+    color: white;               /* White text for contrast */
+    border: none;             /* Remove default border */
+    padding: 10px 15px;      /* Add some padding */
+    margin: 5px;              /* Add spacing between buttons */
+    border-radius: 5px;       /* Round the corners slightly */
+    cursor: pointer;          /* Indicate that it's clickable */
+    font-weight: bold;        /* Make the text bolder */
+    transition: background-color 0.3s ease; /* Smooth transition effect on hover */
+}
+
+.crud-buttons button:hover {
+    background-color: #0056b3; /* Slightly darker blue on hover */
+}

@@ -219,7 +219,14 @@ public class MSSQLGiaoVuDAO implements GiaoVuDAO{
 			data[i][3] = Main.simpleDateFormat.format(giaoVuList.get(i).getNgaySinh());
 			data[i][4]= giaoVuList.get(i).getDiaChi();
 		}
+
 		
+		for (int i = 0; i < data.length; i++) {
+	        for (int j = 0; j < data[i].length; j++) {
+	            System.out.print(data[i][j] + " ");
+	        }
+	        System.out.println(); // Move to the next line after printing each row
+	    }
 		return data;
 	}
 

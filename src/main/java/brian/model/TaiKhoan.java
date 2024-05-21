@@ -1,6 +1,10 @@
 package brian.model;
 
-public class TaiKhoan {
+import java.io.Serializable;
+
+public class TaiKhoan implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private String tenTK;
 	private String matKhau;
 	private String loai;

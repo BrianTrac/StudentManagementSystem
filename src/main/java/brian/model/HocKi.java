@@ -1,8 +1,11 @@
 package brian.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class HocKi {
+public class HocKi implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private String maHK;
 	private String tenHK;
 	private int namHoc;

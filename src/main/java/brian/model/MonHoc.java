@@ -1,6 +1,10 @@
 package brian.model;
 
-public class MonHoc {
+import java.io.Serializable;
+
+public class MonHoc implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private String maMH;
 	private String tenMH;
 	private int soTC;

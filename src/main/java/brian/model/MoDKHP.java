@@ -1,8 +1,11 @@
 package brian.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class MoDKHP {
+public class MoDKHP implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private HocKi maHK;
 	private int soLanMo;
 	private Date ngayBatDau;
