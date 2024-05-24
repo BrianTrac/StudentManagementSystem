@@ -137,14 +137,13 @@ public class MSSQLLopDAO implements LopDAO{
 		try {
 			connection = MSSQLDAOFactory.createConnection();
 			String sql = "update LOP "
-					+ "set MaLop = ?, TenLop = ?, SoSV = ?"
-					+ "where MaLop = ?";
+					+ "set TenLop = ?, SoSV = ?"
+					+ " where MaLop = ?";
 			preparedStatement = connection.prepareStatement(sql);
 			
-			preparedStatement.setString(1, lop.getMaLop());
-			preparedStatement.setString(2, lop.getTenLop());
-			preparedStatement.setInt(3, lop.getSoSV());
-			preparedStatement.setString(4, lop.getMaLop());
+			preparedStatement.setString(1, lop.getTenLop());
+			preparedStatement.setInt(2, lop.getSoSV());
+			preparedStatement.setString(3, lop.getMaLop());
 			
 			preparedStatement.execute();
 		} catch (Exception e) {
@@ -176,7 +175,7 @@ public class MSSQLLopDAO implements LopDAO{
 		try {
 			connection = MSSQLDAOFactory.createConnection();
 			String sql = "delete from LOP"
-					+ "where MaLop = ?";
+					+ " where MaLop = ?";
 			preparedStatement = connection.prepareStatement(sql);
 			
 			preparedStatement.setString(1, maLop);

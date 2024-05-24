@@ -186,12 +186,12 @@ public class MSSQLTaiKhoanDAO implements TaiKhoanDAO{
 		
 		try {
 			connection = MSSQLDAOFactory.createConnection();
-			String sql = "insert into TAIKHOAN(TenTK, MatKhau, Loai) values(?, ?, ?)";
+			String sql = "insert into TAIKHOAN(TenTK, Loai) values(?, ?)";
 			preparedStatement = connection.prepareStatement(sql);
 			
 			preparedStatement.setString(1, tk.getTenTK());
-			preparedStatement.setString(2, tk.getMatKhau());
-			preparedStatement.setString(3, tk.getLoai());
+		//	preparedStatement.setString(2, tk.getMatKhau());
+			preparedStatement.setString(2, tk.getLoai());
 			
 			preparedStatement.execute();
 		} catch (Exception e) {

@@ -109,7 +109,9 @@ public class MSSQLGiaoVuDAO implements GiaoVuDAO{
 			preparedStatement.setString(1, gv.getMaGVu().getTenTK());
 			preparedStatement.setString(2, gv.getTenGVu());
 			preparedStatement.setString(3, gv.getGioiTinh());
-			preparedStatement.setString(4, Main.simpleDateFormat.format(gv.getNgaySinh()));
+			java.sql.Date sqlNgaySinh = new java.sql.Date(gv.getNgaySinh().getTime()); 
+
+			preparedStatement.setDate(4, sqlNgaySinh);
 			preparedStatement.setString(5, gv.getDiaChi());
 			
 			
@@ -143,18 +145,20 @@ public class MSSQLGiaoVuDAO implements GiaoVuDAO{
 		try {
 			connection = MSSQLDAOFactory.createConnection();
 			String sql = "update GIAOVU "
-					+ "set MaGVu = ?, TenGVu = ?, GioiTinh = ?, NgaySinh = ?, DiaChi = ?"
-					+ "where MaGVu = ?";
+					+ "set TenGVu = ?, GioiTinh = ?, NgaySinh = ?, DiaChi = ?"
+					+ " where MaGVu = ?";
 			preparedStatement = connection.prepareStatement(sql);
 			
-			preparedStatement.setString(1, gv.getMaGVu().getTenTK());
-			preparedStatement.setString(2, gv.getTenGVu());
-			preparedStatement.setString(3, gv.getGioiTinh());
-			preparedStatement.setString(4, Main.simpleDateFormat.format(gv.getNgaySinh()));
-			preparedStatement.setString(5, gv.getDiaChi());
-			preparedStatement.setString(6, gv.getMaGVu().getTenTK());
+			preparedStatement.setString(1, gv.getTenGVu());
+			preparedStatement.setString(2, gv.getGioiTinh());
+			java.sql.Date sqlNgaySinh = new java.sql.Date(gv.getNgaySinh().getTime()); 
 			
-			preparedStatement.execute();
+			preparedStatement.setDate(3, sqlNgaySinh);	
+			preparedStatement.setString(4, gv.getDiaChi());
+			preparedStatement.setString(5, gv.getMaGVu().getTenTK());
+			
+			preparedStatement.executeUpdate();
+			
 		} catch (Exception e) {
 			System.out.println("Error updating GiaoVu: " + e.getMessage());
 	        return false;
@@ -184,7 +188,7 @@ public class MSSQLGiaoVuDAO implements GiaoVuDAO{
 		try {
 			connection = MSSQLDAOFactory.createConnection();
 			String sql = "delete from GIAOVU"
-					+ "where MaGVu = ?";
+					+ " where MaGVu = ?";
 			preparedStatement = connection.prepareStatement(sql);
 			
 			preparedStatement.setString(1, maGVu);
@@ -220,13 +224,6 @@ public class MSSQLGiaoVuDAO implements GiaoVuDAO{
 			data[i][4]= giaoVuList.get(i).getDiaChi();
 		}
 
-		
-		for (int i = 0; i < data.length; i++) {
-	        for (int j = 0; j < data[i].length; j++) {
-	            System.out.print(data[i][j] + " ");
-	        }
-	        System.out.println(); // Move to the next line after printing each row
-	    }
 		return data;
 	}
 

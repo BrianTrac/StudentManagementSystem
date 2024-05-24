@@ -7,24 +7,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.1">
 <title>Dynamic Menu</title>
-<link rel="stylesheet" href="mainstyle.css?v=1.2">
+<link rel="stylesheet" href="mainstyle.css?v=2.0">
 </head>
 <body>
 	<div class="main-container">
         <nav class="navigation">
             <ul>
-                <li><a href="MainScreen?item=giaoVuBtn">Giáo Vụ</a></li>
-                <li><a href="MainScreen?item=sinhVienBtn">Sinh Viên</a></li>
-                <li><a href="MainScreen?item=giaoVienBtn">Giáo Viên</a></li>
-                <li><a href="MainScreen?item=monHocBtn">Môn Học</a></li>
-                <li><a href="MainScreen?item=lopHocBtn">Lớp Học</a></li>
-                <li><a href="MainScreen?item=hocKiBtn">Học Kì</a></li>
-                <li><a href="MainScreen?item=hocPhanBtn">Học Phần</a></li>
-                <li><a href="MainScreen?item=dangKiBtn">Đăng kí học phần</a></li>
+                <li><a href="MainScreen?item=GiaoVu">Giáo Vụ</a></li>
+                <li><a href="MainScreen?item=SinhVien">Sinh Viên</a></li>
+                <li><a href="MainScreen?item=GiaoVien">Giáo Viên</a></li>
+                <li><a href="MainScreen?item=MonHoc">Môn Học</a></li>
+                <li><a href="MainScreen?item=LopHoc">Lớp Học</a></li>
+                <li><a href="MainScreen?item=HocKi">Học Kì</a></li>
+                <li><a href="MainScreen?item=HocPhan">Học Phần</a></li>
+                <li><a href="MainScreen?item=DangKi">Đăng kí học phần</a></li>
             </ul>
         </nav>
 
-        <div class="table-container">
+        <div class="mid-container">
             <div class="content">
             	<%
             		String selectedContent = (String) request.getAttribute("selectedContent");  

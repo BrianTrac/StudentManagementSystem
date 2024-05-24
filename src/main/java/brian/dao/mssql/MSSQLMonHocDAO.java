@@ -137,14 +137,13 @@ public class MSSQLMonHocDAO implements MonHocDAO{
 		try {
 			connection = MSSQLDAOFactory.createConnection();
 			String sql = "update MONHOC "
-					+ "set MaMH = ?, TenMH = ?, SoTC = ?"
-					+ "where MaMH = ?";
+					+ "set TenMH = ?, SoTC = ?"
+					+ " where MaMH = ?";
 			preparedStatement = connection.prepareStatement(sql);
 			
-			preparedStatement.setString(1, mh.getMaMH());
-			preparedStatement.setString(2, mh.getTenMH());
-			preparedStatement.setString(3, String.valueOf(mh.getSoTC()));
-			preparedStatement.setString(4, mh.getMaMH());
+			preparedStatement.setString(1, mh.getTenMH());
+			preparedStatement.setString(2, String.valueOf(mh.getSoTC()));
+			preparedStatement.setString(3, mh.getMaMH());
 			
 			preparedStatement.execute();
 		} catch (Exception e) {
@@ -176,7 +175,7 @@ public class MSSQLMonHocDAO implements MonHocDAO{
 		try {
 			connection = MSSQLDAOFactory.createConnection();
 			String sql = "delete from MONHOC"
-					+ "where MaMH = ?";
+					+ " where MaMH = ?";
 			preparedStatement = connection.prepareStatement(sql);
 			
 			preparedStatement.setString(1, maMH);

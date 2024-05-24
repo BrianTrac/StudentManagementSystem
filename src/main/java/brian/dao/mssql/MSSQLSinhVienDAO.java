@@ -114,7 +114,9 @@ public class MSSQLSinhVienDAO implements SinhVienDAO{
 			preparedStatement.setString(1, sv.getMaSV().getTenTK());
 			preparedStatement.setString(2, sv.getTenSV());
 			preparedStatement.setString(3, sv.getGioiTinh());
-			preparedStatement.setString(4, Main.simpleDateFormat.format(sv.getNgaySinh()));
+			java.sql.Date sqlNgaySinh = new java.sql.Date(sv.getNgaySinh().getTime()); 
+
+			preparedStatement.setDate(4, sqlNgaySinh);
 			preparedStatement.setString(5, sv.getKhoa());
 			preparedStatement.setString(6, sv.getDiaChi());
 			preparedStatement.setString(7, sv.getGhiChu());
@@ -149,18 +151,19 @@ public class MSSQLSinhVienDAO implements SinhVienDAO{
 		try {
 			connection = MSSQLDAOFactory.createConnection();
 			String sql = "update SINHVIEN "
-					+ "set MaSV = ?, TenSV = ?, GioiTinh = ?, NgaySinh = ?, Khoa = ?, DiaChi = ?, GhiChu = ?"
-					+ "where MaSV = ?";
+					+ "set TenSV = ?, GioiTinh = ?, NgaySinh = ?, Khoa = ?, DiaChi = ?, GhiChu = ?"
+					+ " where MaSV = ?";
 			preparedStatement = connection.prepareStatement(sql);
 			
-			preparedStatement.setString(1, sv.getMaSV().getTenTK());
-			preparedStatement.setString(2, sv.getTenSV());
-			preparedStatement.setString(3, sv.getGioiTinh());
-			preparedStatement.setString(4, Main.simpleDateFormat.format(sv.getNgaySinh()));
-			preparedStatement.setString(5, sv.getKhoa());
-			preparedStatement.setString(6, sv.getDiaChi());
-			preparedStatement.setString(7, sv.getGhiChu());
-			preparedStatement.setString(8, sv.getMaSV().getTenTK());
+			preparedStatement.setString(1, sv.getTenSV());
+			preparedStatement.setString(2, sv.getGioiTinh());
+			java.sql.Date sqlNgaySinh = new java.sql.Date(sv.getNgaySinh().getTime()); 
+
+			preparedStatement.setDate(3, sqlNgaySinh);
+			preparedStatement.setString(4, sv.getKhoa());
+			preparedStatement.setString(5, sv.getDiaChi());
+			preparedStatement.setString(6, sv.getGhiChu());
+			preparedStatement.setString(7, sv.getMaSV().getTenTK());
 			
 			preparedStatement.execute();
 		} catch (Exception e) {
@@ -192,7 +195,7 @@ public class MSSQLSinhVienDAO implements SinhVienDAO{
 		try {
 			connection = MSSQLDAOFactory.createConnection();
 			String sql = "delete from SINHVIEN"
-					+ "where MaSV = ?";
+					+ " where MaSV = ?";
 			preparedStatement = connection.prepareStatement(sql);
 			
 			preparedStatement.setString(1, maSV);

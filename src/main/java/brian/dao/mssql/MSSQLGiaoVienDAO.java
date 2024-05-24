@@ -114,7 +114,9 @@ public class MSSQLGiaoVienDAO implements GiaoVienDAO {
 			preparedStatement.setString(1, gv.getMaGV());
 			preparedStatement.setString(2, gv.getTenGV());
 			preparedStatement.setString(3, gv.getGioiTinh());
-			preparedStatement.setString(4, Main.simpleDateFormat.format(gv.getNgaySinh()));
+			java.sql.Date sqlNgaySinh = new java.sql.Date(gv.getNgaySinh().getTime()); 
+
+			preparedStatement.setDate(4, sqlNgaySinh);
 			preparedStatement.setString(5, gv.getKhoa());
 			preparedStatement.setString(6, gv.getDiaChi());
 			preparedStatement.setString(7, gv.getGhiChu());
@@ -149,18 +151,19 @@ public class MSSQLGiaoVienDAO implements GiaoVienDAO {
 		try {
 			connection = MSSQLDAOFactory.createConnection();
 			String sql = "update GIAOVIEN "
-					+ "set MaGV = ?, TenGV = ?, GioiTinh = ?, NgaySinh = ?, Khoa = ?, DiaChi = ?, GhiChu = ?"
-					+ "where MaGV = ?";
+					+ "set TenGV = ?, GioiTinh = ?, NgaySinh = ?, Khoa = ?, DiaChi = ?, GhiChu = ?"
+					+ " where MaGV = ?";
 			preparedStatement = connection.prepareStatement(sql);
 			
-			preparedStatement.setString(1, gv.getMaGV());
-			preparedStatement.setString(2, gv.getTenGV());
-			preparedStatement.setString(3, gv.getGioiTinh());
-			preparedStatement.setString(4, Main.simpleDateFormat.format(gv.getNgaySinh()));
-			preparedStatement.setString(5, gv.getKhoa());
-			preparedStatement.setString(6, gv.getDiaChi());
-			preparedStatement.setString(7, gv.getGhiChu());
-			preparedStatement.setString(8, gv.getMaGV());
+			preparedStatement.setString(1, gv.getTenGV());
+			preparedStatement.setString(2, gv.getGioiTinh());
+			java.sql.Date sqlNgaySinh = new java.sql.Date(gv.getNgaySinh().getTime()); 
+			
+			preparedStatement.setDate(3, sqlNgaySinh);	
+			preparedStatement.setString(4, gv.getKhoa());
+			preparedStatement.setString(5, gv.getDiaChi());
+			preparedStatement.setString(6, gv.getGhiChu());
+			preparedStatement.setString(7, gv.getMaGV());
 			
 			preparedStatement.execute();
 		} catch (Exception e) {
@@ -192,7 +195,7 @@ public class MSSQLGiaoVienDAO implements GiaoVienDAO {
 		try {
 			connection = MSSQLDAOFactory.createConnection();
 			String sql = "delete from GIAOVIEN"
-					+ "where MaGV = ?";
+					+ " where MaGV = ?";
 			preparedStatement = connection.prepareStatement(sql);
 			
 			preparedStatement.setString(1, maGV);

@@ -13,6 +13,12 @@ public class TaiKhoan implements Serializable{
 		
 	}
 	
+	public TaiKhoan(String tenTK, String loai) {
+		super();
+		this.tenTK = tenTK;
+		this.loai = loai;
+	}
+	
 	public TaiKhoan(String tenTK, String matKhau, String loai) {
 		super();
 		this.tenTK = tenTK;

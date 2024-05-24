@@ -9,10 +9,5 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>LoginController</display-name>
-    <servlet-name>LoginController</servlet-name>
-    <servlet-class>brian.controller.LoginController</servlet-class>
-  </servlet>
+
 </web-app>
