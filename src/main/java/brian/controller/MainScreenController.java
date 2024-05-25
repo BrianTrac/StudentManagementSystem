@@ -61,12 +61,12 @@ public class MainScreenController extends HttpServlet {
 			headers = new String[] {"Mã HP", "Mã MH", "Mã Lớp", "Mã HK", "Mã GV", "Sĩ Số", "Đã ĐK", "Khóa", "Thứ", "Khung giờ", "Phòng", "Địa Điểm"};
 
 		}
-		else if ("DangKi".equals(selectedItem)) {
-			contentType = "Thông Tin Đăng Kí Học Phần";
-			tableType = "DangKiHocPhan.jsp";
-			object = Main.dkhpDAO.getObjectMatrix();
-			headers = new String[] {"MãHK", "Số Lần Mở", "Ngày Bắt Đầu", "Ngày Kết Thúc"};
-		}
+//		else if ("DangKi".equals(selectedItem)) {
+//			contentType = "Thông Tin Đăng Kí Học Phần";
+//			tableType = "DangKiHocPhan.jsp";
+//			object = Main.dkhpDAO.getObjectMatrix();
+//			headers = new String[] {"MãHK", "Số Lần Mở", "Ngày Bắt Đầu", "Ngày Kết Thúc"};
+//		}
 		else {
 			//
 		}

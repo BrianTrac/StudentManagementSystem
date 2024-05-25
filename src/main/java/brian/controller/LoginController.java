@@ -11,7 +11,7 @@ import brian.Main;
 import brian.model.TaiKhoan;
 import brian.util.PasswordUtil;
 
-@WebServlet(" /LoginController")
+
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

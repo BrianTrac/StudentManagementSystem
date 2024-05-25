@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.1">
 <title>Dynamic Menu</title>
-<link rel="stylesheet" href="mainstyle.css?v=2.5">
+<link rel="stylesheet" href="mainstyle.css?v=2.1">
 </head>
 <body>
 	<div class="main-container">
