@@ -1,3 +1,78 @@
+function reloadTableDataOfDKHP(objectType, params = {}) {
+    let url = contextPath + '/SinhVienController?objectType=' + encodeURIComponent(objectType);
+
+    // Add additional parameters to the URL
+    for (const [key, value] of Object.entries(params)) {
+        url += '&' + encodeURIComponent(key) + '=' + encodeURIComponent(value);
+    }
+
+    console.log("reloadTableData of SinhVienController");
+    console.log(contextPath);
+	console.log(url);
+	console.log(objectType)
+
+    fetch(url, {
+        method: 'POST', // Use POST method
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams(params) // Use params directly
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Failed to reload ${objectType} data. Server responded with status: ${response.status}`);
+        }
+        return response.text();
+    })
+    .then(newTableHtml => {
+        $('#dynamicTable').replaceWith(newTableHtml);
+        // Reattach event handlers for the new table
+        attachTableEventHandlers(objectType);
+    })
+    .catch(error => {
+        console.error('Error reloading table:', error);
+        alert(`Có lỗi xảy ra khi tải lại bảng dữ liệu ${objectType}. Vui lòng thử lại.`); 
+    });
+}
+
+function reloadTableDataOfDangKi(objectType, params = {}) {
+    let url = contextPath + '/HocPhanController?objectType=' + encodeURIComponent(objectType);
+
+    // Add additional parameters to the URL
+    for (const [key, value] of Object.entries(params)) {
+        url += '&' + encodeURIComponent(key) + '=' + encodeURIComponent(value);
+    }
+
+    console.log("reloadTableData of HocPhanController");
+    console.log(contextPath);
+	console.log(url);
+	console.log(objectType)
+
+    fetch(url, {
+        method: 'POST', // Use POST method
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams(params) // Use params directly
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Failed to reload ${objectType} data. Server responded with status: ${response.status}`);
+        }
+        return response.text();
+    })
+    .then(newTableHtml => {
+        $('#dynamicTable').replaceWith(newTableHtml);
+        // Reattach event handlers for the new table
+        attachTableEventHandlers(objectType);
+    })
+    .catch(error => {
+        console.error('Error reloading table:', error);
+        alert(`Có lỗi xảy ra khi tải lại bảng dữ liệu ${objectType}. Vui lòng thử lại.`); 
+    });
+}
+
+
 function reloadTableData(objectType) {
 
 	const url = contextPath + '/TableController?objectType=' + encodeURIComponent(objectType);
@@ -26,21 +101,19 @@ function reloadTableData(objectType) {
                 attachTableEventHandlers(objectType);
             }
             
-             if (!$('#result-container').length) {
-		        console.error('Element with ID result-container not found');
-		        return;
-		    }
-		    $('#result-container').html(""); 
+         //    if (!$('#result-container').length) {
+		 //       console.error('Element with ID result-container not found');
+		 //       return;
+		 //   }
+		 //   $('#result-container').html(""); 
 		    // Log to the console to confirm if the element was emptied
-		    console.log("result-container emptied successfully!"); 
+		 //   console.log("result-container emptied successfully!"); 
 		})
 		.catch(error => {
             console.error('Error reloading table:', error);
             alert(`Có lỗi xảy ra khi tải lại bảng dữ liệu ${objectType}. Vui lòng thử lại.`); 
         });
 }
-
-let selectedRow = null;
 
 function handleRowClick(row) {
 	

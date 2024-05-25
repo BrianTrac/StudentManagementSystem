@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.1">
 <title>Dynamic Menu</title>
-<link rel="stylesheet" href="mainstyle.css?v=2.0">
+<link rel="stylesheet" href="mainstyle.css?v=2.5">
 </head>
 <body>
 	<div class="main-container">
@@ -20,7 +20,6 @@
                 <li><a href="MainScreen?item=LopHoc">Lớp Học</a></li>
                 <li><a href="MainScreen?item=HocKi">Học Kì</a></li>
                 <li><a href="MainScreen?item=HocPhan">Học Phần</a></li>
-                <li><a href="MainScreen?item=DangKi">Đăng kí học phần</a></li>
             </ul>
         </nav>
 
@@ -41,7 +40,7 @@
             </div>
         </div>
         <div class="info-container">
-				<jsp:include page="info.jsp"/>     
+				<jsp:include page="info.jsp"/>    
         </div>
     </div>
 </body>

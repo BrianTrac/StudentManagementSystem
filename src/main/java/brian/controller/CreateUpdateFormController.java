@@ -61,8 +61,9 @@ public class CreateUpdateFormController extends HttpServlet {
             request.getRequestDispatcher("/HocKiController?action=" + action).forward(request, response);
         }
         else if ("HocPhan".equals(objectType)) {
-        	String[] headers = new String[] {"Mã MH", "Tên Môn Học", "Tên Lớp", "SốTC", "Sĩ Số", "Đã ĐK", "Khóa", "Lịch học", "Địa Điểm", "Tên Giáo Viên"};
-			
+        //	String[] headers = new String[] {"Mã HP", "Tên Môn Học", "Tên Lớp", "SốTC", "Sĩ Số", "Đã ĐK", "Khóa", "Lịch học", "Địa Điểm", "Tên Giáo Viên"};
+        	String[] headers = new String[] {"Mã HP", "Mã MH", "Mã Lớp", "Mã HK", "Mã GV", "Sĩ Số", "Đã ĐK", "Khóa", "Thứ", "Khung giờ", "Phòng", "Địa Điểm"};
+
             request.getRequestDispatcher("/HocPhanController?action=" + action).forward(request, response);
         }
         else {

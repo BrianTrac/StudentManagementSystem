@@ -111,9 +111,12 @@ public class MSSQLHocKiDAO implements HocKiDAO{
 			preparedStatement.setString(1, hk.getMaHK());
 			preparedStatement.setString(2, hk.getTenHK());
 			preparedStatement.setString(3, String.valueOf(hk.getNamHoc()));
-			preparedStatement.setString(4, Main.simpleDateFormat.format(hk.getNgayBatDau()));
-			preparedStatement.setString(5, Main.simpleDateFormat.format(hk.getNgayKetThuc()));
-						
+			java.sql.Date sqlNgayBatDau = new java.sql.Date(hk.getNgayBatDau().getTime()); 
+			preparedStatement.setDate(4, sqlNgayBatDau);
+			java.sql.Date sqlNgayKetThuc = new java.sql.Date(hk.getNgayKetThuc().getTime()); 
+			preparedStatement.setDate(5, sqlNgayKetThuc);
+			
+			
 			preparedStatement.execute();
 		} catch (Exception e) {
 			System.out.println("Error adding HocKi: " + e.getMessage());
@@ -144,16 +147,17 @@ public class MSSQLHocKiDAO implements HocKiDAO{
 		try {
 			connection = MSSQLDAOFactory.createConnection();
 			String sql = "update HOCKI "
-					+ "set MaHK = ?, TenHK = ?, NamHoc = ?, NgayBatDau = ?, NgayKetThuc = ?"
-					+ "where MaHK = ?";
+					+ "set TenHK = ?, NamHoc = ?, NgayBatDau = ?, NgayKetThuc = ?"
+					+ " where MaHK = ?";
 			preparedStatement = connection.prepareStatement(sql);
 			
-			preparedStatement.setString(1, hk.getMaHK());
-			preparedStatement.setString(2, hk.getTenHK());
-			preparedStatement.setString(3, String.valueOf(hk.getNamHoc()));
-			preparedStatement.setString(4, Main.simpleDateFormat.format(hk.getNgayBatDau()));
-			preparedStatement.setString(5, Main.simpleDateFormat.format(hk.getNgayKetThuc()));
-			preparedStatement.setString(6, hk.getMaHK());
+			preparedStatement.setString(1, hk.getTenHK());
+			preparedStatement.setString(2, String.valueOf(hk.getNamHoc()));
+			java.sql.Date sqlNgayBatDau = new java.sql.Date(hk.getNgayBatDau().getTime()); 
+			preparedStatement.setDate(3, sqlNgayBatDau);
+			java.sql.Date sqlNgayKetThuc = new java.sql.Date(hk.getNgayKetThuc().getTime()); 
+			preparedStatement.setDate(4, sqlNgayKetThuc);
+			preparedStatement.setString(5, hk.getMaHK());
 			
 			preparedStatement.execute();
 		} catch (Exception e) {
@@ -185,7 +189,7 @@ public class MSSQLHocKiDAO implements HocKiDAO{
 		try {
 			connection = MSSQLDAOFactory.createConnection();
 			String sql = "delete from HOCKI"
-					+ "where MaHK = ?";
+					+ " where MaHK = ?";
 			preparedStatement = connection.prepareStatement(sql);
 			
 			preparedStatement.setString(1, maHK);

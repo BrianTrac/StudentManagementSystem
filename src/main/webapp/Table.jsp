@@ -37,14 +37,14 @@
 		
 	    
 	    System.out.println("In Table.jsp");
-//	    for (String header : headers) {
-//	    	System.out.println(header);
-//	    }
-//	    for (Object[] d : data) {
-//	    	for (Object s: d) {
-//	    		System.out.println(s.toString());
-//	    	}
-//	    }
+	    for (String header : headers) {
+	    	System.out.println(header);
+	    }
+	    for (Object[] d : data) {
+	    	for (Object s: d) {
+	    		System.out.println(s.toString());
+	    	}
+	    }
 %>
     <table id="dynamicTable">
         <thead>
@@ -55,15 +55,18 @@
             </tr>
         </thead>
         <tbody>
-            <% for (Object[] rowData : data) { %>
-                <tr>
-                     <% for (int i = 0; i < rowData.length; i++) { 
-                        String cellData = (rowData[i] != null && !"null".equals(rowData[i].toString())) ? rowData[i].toString() : "";
-                    %>
-                        <td><%= cellData %></td>
-                    <% } %>
-                </tr>
-            <% } %>
+            <% 
+            if (data != null && data.length > 0) {
+	            for (Object[] rowData : data) { %>
+	                <tr>
+	                     <% for (int i = 0; i < rowData.length; i++) { 
+	                        String cellData = (rowData[i]!= "[]" && rowData[i] != null && !"null".equals(rowData[i].toString())) ? rowData[i].toString() : "";
+	                    %>
+	                        <td><%= cellData %></td>
+	                    <% } %>
+	                </tr>
+	            <% }
+	        }%>
         </tbody>
     </table>
 <%

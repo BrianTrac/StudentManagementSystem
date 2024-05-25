@@ -38,7 +38,7 @@ public class HocPhan implements Serializable {
 		this.phong = phong;
 		this.diaDiem = diaDiem;
 	}
-
+		
 	public String getMaHP() {
 		return maHP;
 	}

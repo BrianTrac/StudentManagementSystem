@@ -26,9 +26,13 @@ public class LopHocController extends HttpServlet {
 		switch(action) {
 		case "create":
 			handleCreateLopHoc(request, response);
+			// Redirect to MainScreen after handling the action
+		    response.sendRedirect("MainScreen?item=LopHoc");
 			break;
 		case "update":
 			handleUpdateLopHoc(request, response);
+			// Redirect to MainScreen after handling the action
+		    response.sendRedirect("MainScreen?item=LopHoc");
 			break;
 		case "delete":
 			handleDeleteLopHoc(request, response);
@@ -37,8 +41,7 @@ public class LopHocController extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             response.getWriter().write("Invalid action");
 		}
-		// Redirect to MainScreen after handling the action
-	    response.sendRedirect("MainScreen?item=LopHoc");
+		
 	}
 
 	private void handleCreateLopHoc(HttpServletRequest request, HttpServletResponse response) throws IOException  {
@@ -58,7 +61,7 @@ public class LopHocController extends HttpServlet {
 			Lop lopHoc = new Lop(maLopHoc, tenLopHoc, soSV);
 			
 			if (!Main.lopDAO.addLop(lopHoc)) {
-				request.setAttribute("errorMessage", "Mã lớp học đã tồn tại!");
+				request.setAttribute("errorMessage", "Error update database!");
                 // Forward back to createUpdateForm.jsp
                 request.getRequestDispatcher("createUpdateForm.jsp").forward(request, response);
                 return;

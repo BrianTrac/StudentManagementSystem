@@ -27,9 +27,13 @@ public class GiaoVienController extends HttpServlet {
 		switch(action) {
 		case "create":
 			handleCreateGiaoVien(request, response);
+			// Redirect to MainScreen after handling the action
+		    response.sendRedirect("MainScreen?item=GiaoVien");
 			break;
 		case "update":
 			handleUpdateGiaoVien(request, response);
+			// Redirect to MainScreen after handling the action
+		    response.sendRedirect("MainScreen?item=GiaoVien");
 			break;
 		case "delete":
 			handleDeleteGiaoVien(request, response);
@@ -38,8 +42,7 @@ public class GiaoVienController extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             response.getWriter().write("Invalid action");
 		}
-		// Redirect to MainScreen after handling the action
-	    response.sendRedirect("MainScreen?item=GiaoVien"); 
+		 
 	}
 
 	private void handleCreateGiaoVien(HttpServletRequest request, HttpServletResponse response) throws IOException  {
@@ -70,7 +73,7 @@ public class GiaoVienController extends HttpServlet {
 			GiaoVien giaoVien = new GiaoVien(maGiaoVien, tenGiaoVien, gioiTinh, ngaySinh, khoa, diaChi, ghiChu);
 			
 			if (!Main.giaoVienDAO.addGiaoVien(giaoVien)) {
-				request.setAttribute("errorMessage", "Mã giáo viên đã tồn tại!");
+				request.setAttribute("errorMessage", "Error update database!");
                 // Forward back to createUpdateForm.jsp
                 request.getRequestDispatcher("createUpdateForm.jsp").forward(request, response);
                 return;

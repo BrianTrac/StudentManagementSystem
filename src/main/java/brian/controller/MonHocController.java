@@ -27,9 +27,13 @@ public class MonHocController extends HttpServlet {
 		switch(action) {
 		case "create":
 			handleCreateMonHoc(request, response);
+			// Redirect to MainScreen after handling the action
+		    response.sendRedirect("MainScreen?item=MonHoc"); 
 			break;
 		case "update":
 			handleUpdateMonHoc(request, response);
+			// Redirect to MainScreen after handling the action
+		    response.sendRedirect("MainScreen?item=MonHoc"); 
 			break;
 		case "delete":
 			handleDeleteMonHoc(request, response);
@@ -38,8 +42,7 @@ public class MonHocController extends HttpServlet {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             response.getWriter().write("Invalid action");
 		}
-		// Redirect to MainScreen after handling the action
-	    response.sendRedirect("MainScreen?item=MonHoc"); 
+		
 	
 	}
 	
@@ -62,7 +65,7 @@ public class MonHocController extends HttpServlet {
 			MonHoc monHoc = new MonHoc(maMonHoc, tenMonHoc, soTC);
 			
 			if (!Main.monHocDAO.addMonHoc(monHoc)) {
-				request.setAttribute("errorMessage", "Mã môn học đã tồn tại!");
+				request.setAttribute("errorMessage", "Error update database!");
                 // Forward back to createUpdateForm.jsp
                 request.getRequestDispatcher("createUpdateForm.jsp").forward(request, response);
                 return;

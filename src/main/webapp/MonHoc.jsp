@@ -40,6 +40,7 @@
 	</div>
 
 	<script>
+	let selectedRow = null;
 $(document).ready(function() {
 
     reloadTableData('MonHoc');

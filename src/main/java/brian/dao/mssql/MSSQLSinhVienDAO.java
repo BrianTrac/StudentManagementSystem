@@ -1,5 +1,6 @@
 package brian.dao.mssql;
 
+import java.nio.channels.SelectableChannel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +9,7 @@ import java.util.List;
 
 import brian.Main;
 import brian.dao.SinhVienDAO;
+import brian.model.HocPhan;
 import brian.model.SinhVien;
 
 public class MSSQLSinhVienDAO implements SinhVienDAO{
@@ -52,7 +54,7 @@ public class MSSQLSinhVienDAO implements SinhVienDAO{
 		
 		return sinhVienList;
 	}
-
+	
 	@Override
 	public SinhVien getSinhVien(String maSV) {
 		// TODO Auto-generated method stub
@@ -92,6 +94,54 @@ public class MSSQLSinhVienDAO implements SinhVienDAO{
 		}
 		
 		return sinhVien;
+	}
+	
+	@Override
+	public List<SinhVien> getSinhVienByYear(String nam) {
+		// TODO Auto-generated method stub
+		List<SinhVien> sinhVienList = new ArrayList<>();
+		Connection connection = null;
+	    PreparedStatement preparedStatement = null;
+	    ResultSet resultSet = null;
+	    
+		String sql = "select sv.* "
+				+    "from SINHVIEN sv "
+				+ 	 "join DKHP dkhp on sv.MaSV = dkhp.MaSV "
+				+ 	 "join HOCPHAN hp on dkhp.MaHP = hp.MaHP "
+				+ 	 "where hp.Khoa = ? ";
+				
+		try {
+			connection = MSSQLDAOFactory.createConnection();
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, nam);
+			resultSet = preparedStatement.executeQuery();
+			
+			while (resultSet.next()) {
+				SinhVien sinhVien = new SinhVien();
+				sinhVien.setMaSV(Main.taiKhoanDAO.getTaiKhoan(resultSet.getString("MaSV")));
+				sinhVien.setTenSV(resultSet.getString("TenSV"));
+				sinhVien.setGioiTinh(resultSet.getString("GioiTinh"));
+				sinhVien.setNgaySinh(Main.simpleDateFormat.parse(resultSet.getString("NgaySinh")));
+				sinhVien.setDiaChi(resultSet.getString("DiaChi"));
+				sinhVien.setKhoa(resultSet.getString("Khoa"));
+				sinhVien.setGhiChu(resultSet.getString("GhiChu"));
+				
+				sinhVienList.add(sinhVien);
+			}
+		} catch (Exception e) {
+			System.out.println("Error fetching SinhVienDAO: " + e.getMessage());
+		}
+		finally {
+			try {
+				if (resultSet != null) resultSet.close();
+	            if (preparedStatement != null) preparedStatement.close();
+	            if (connection != null) connection.close();
+			} catch (Exception e) {
+				System.out.println("Error closing resources: " + e.getMessage());
+			}
+		}
+		
+		return sinhVienList;
 	}
 
 	@Override
@@ -221,6 +271,24 @@ public class MSSQLSinhVienDAO implements SinhVienDAO{
 	public Object[][] getObjectMatrix() {
 		// TODO Auto-generated method stub
 		List<SinhVien> sinhVienList = getAllSinhVien();
+		Object[][] data = new Object[sinhVienList.size()][7];
+		
+		for (int i = 0; i < data.length; i++) {
+			data[i][0] = sinhVienList.get(i).getMaSV().getTenTK();
+			data[i][1] = sinhVienList.get(i).getTenSV();
+			data[i][2] = sinhVienList.get(i).getGioiTinh();
+			data[i][3] = Main.simpleDateFormat.format(sinhVienList.get(i).getNgaySinh());
+			data[i][4] = sinhVienList.get(i).getKhoa();
+			data[i][5] = sinhVienList.get(i).getDiaChi();
+			data[i][6] = sinhVienList.get(i).getGhiChu();
+		}
+		
+		return data;
+	}
+	
+	@Override
+	public Object[][] getObjectMatrix(List<SinhVien> sinhVienList) {
+		// TODO Auto-generated method stub
 		Object[][] data = new Object[sinhVienList.size()][7];
 		
 		for (int i = 0; i < data.length; i++) {

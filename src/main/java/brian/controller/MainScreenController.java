@@ -58,7 +58,8 @@ public class MainScreenController extends HttpServlet {
 			contentType = "Thông Tin Học Phần";
 			tableType = "HocPhan.jsp";
 			object = Main.hocPhanDAO.getObjectMatrix();
-			headers = new String[] {"Mã MH", "Tên Môn Học", "Tên Lớp", "SốTC", "Sĩ Số", "Đã ĐK", "Khóa", "Lịch học", "Địa Điểm", "Tên Giáo Viên"};
+			headers = new String[] {"Mã HP", "Mã MH", "Mã Lớp", "Mã HK", "Mã GV", "Sĩ Số", "Đã ĐK", "Khóa", "Thứ", "Khung giờ", "Phòng", "Địa Điểm"};
+
 		}
 		else if ("DangKi".equals(selectedItem)) {
 			contentType = "Thông Tin Đăng Kí Học Phần";

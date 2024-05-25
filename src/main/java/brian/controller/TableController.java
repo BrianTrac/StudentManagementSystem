@@ -17,7 +17,6 @@ public class TableController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		System.out.println("TableController: doGet() started");
 		String objectType = request.getParameter("objectType");
 		if (objectType == null) {
 			objectType = "GiaoVu";
@@ -52,7 +51,8 @@ public class TableController extends HttpServlet {
 			break;
 		case "HocPhan":
 			tableData = Main.hocPhanDAO.getObjectMatrix();
-			headers = new String[] {"Mã MH", "Tên Môn Học", "Tên Lớp", "SốTC", "Sĩ Số", "Đã ĐK", "Khóa", "Lịch học", "Địa Điểm", "Tên Giáo Viên"};
+		//	headers = new String[] {"Mã MH", "Tên Môn Học", "Tên Lớp", "SốTC", "Sĩ Số", "Đã ĐK", "Khóa", "Lịch học", "Địa Điểm", "Tên Giáo Viên"};
+			headers = new String[] {"Mã HP", "Mã MH", "Mã Lớp", "Mã HK", "Mã GV", "Sĩ Số", "Đã ĐK", "Khóa", "Thứ", "Khung giờ", "Phòng", "Địa Điểm"};
 			break;
 		default:
 			tableData = new Object[0][0];
